@@ -1,0 +1,114 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include "HAL/nrf24l01.h"
+#include "HAL/nrf24l01registers.h"
+#include "ServiceLayer/EF_Frame.h"
+#include "Utilities/EF_SpechialTIMER.h"
+#include "MiddleWare/NodsPack.h"
+#include "MCAL/EF_SPI.h"
+#include "MCAL/EF_UART.h"
+
+
+
+/* define debug print enable or disable on uart */
+#define DEBUGENABLED 0
+#define CHECK_DEBUG  0
+
+/*RF channels */
+//#define RF_CHNL_1          76
+//#define RF_CHNL_2          92
+/* Receiver Scan */
+
+
+/* Config UART for debugging */
+UART_cfg_str uart_cfg = {9600, 8, ONE_STOP_BIT, NO_PARITY, FALSE, FALSE, 1,1 };
+
+/* set addresses */
+uint8_t addrtx0[NRF24L01_ADDRSIZE] = NRF24L01_ADDRP0;
+uint8_t addrtx1[NRF24L01_ADDRSIZE] = NRF24L01_ADDRP1;
+uint8_t addrtx2[NRF24L01_ADDRSIZE] = NRF24L01_ADDRP2;
+uint8_t addrtx3[NRF24L01_ADDRSIZE] = NRF24L01_ADDRP3;
+uint8_t addrtx4[NRF24L01_ADDRSIZE] = NRF24L01_ADDRP4;
+uint8_t addrtx5[NRF24L01_ADDRSIZE] = NRF24L01_ADDRP5;
+
+
+
+int main(void)
+{
+
+	uint8_t i = 0;
+	unsigned int rec_count = 0;
+	uint8_t data_recvd_pipe = 0;
+	char rf_chanel = NRF24L01_CH;
+
+	wrt_nrf_DataStatus ret_write = 0;
+
+	str_received_data recv_data ;
+
+	U8_t SW_ACK[32] = {0};
+	memset(SW_ACK,5,32);
+
+	/* nrf24l01 variables */
+	uint8_t bufferin[NRF24L01_PAYLOAD];
+	/*init special timer */
+	EF_void_TimerInit();
+	EF_void_TimerCreate(CHNL_SCN_ID,CHNL_SCN_TIMEOUT);
+	EF_SpiInit(1);
+	EF_void_UART_Init(&uart_cfg);
+	EF_nrf24l01_init(rf_chanel);
+	EF_void_UART_SendString("Init as a receiver \n");
+
+	/* load the buffer to send over rf */
+	for(i=0; i<sizeof(bufferin); i++)
+		bufferin[i] = 0;
+
+	for(;;)
+	{
+		/*--------------------------------------------------------------------------------------------------------
+		 * 									  Receive Mode
+		 * --------------------------------------------------------------------------------------------------------*/
+		// timer APIS
+//		EF_void_TimerStart(CHNL_SCN_ID);
+		do
+		{
+			if(EF_nrf24l01_readready(&data_recvd_pipe))   //if data is ready
+			{
+				/* read buffer */
+				EF_void_UART_SendString("RX received data ");
+				EF_nrf24l01_readData(bufferin);
+				EF_void_UART_SendArray(bufferin, 21);
+				EF_void_UART_SendString("\n");
+				/* switch to transmitter */
+//				EF_nrf24l01_writeregister(CONFIG, EF_nrf24l01_readregister(CONFIG) &~ (1<<PWR_UP));     //power up
+				 /* set tx address for pipe 2 */
+				nrf24l01_settxaddr(addrtx2);
+				nrf24l01_setTXMode();
+				do
+				{
+					ret_write =	EF_nrf24l01_writeData(bufferin, 21);
+					_delay_ms(100);
+
+				}while(ret_write !=  nrf_transmit_success);
+				// reinit as a receiver
+				/* set rx mode */
+				nrf24l01_setRXMode();
+//				EF_nrf24l01_init(rf_chanel);
+
+				EF_void_UART_SendString("reinit as RX again\n");
+
+			}/* end of read data */
+
+//			_delay_ms(1000);
+		}while(1);
+		//while(!(EF_BOOLEAN_TimerCheck(CHNL_SCN_ID)));
+//		EF_void_TimerStop(CHNL_SCN_ID);
+//		EF_void_TimerReset(CHNL_SCN_ID);
+
+	}
+	return 0;
+}
