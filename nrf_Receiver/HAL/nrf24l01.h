@@ -59,7 +59,7 @@ Please refer to LICENSE file for licensing information.
 #define NRF24L01_RF24_CRC                NRF24L01_RF24_CRC_16
 
 /* transmission channel */
-#define NRF24L01_CH                      92
+#define NRF24L01_CH                      57
 #define NRF24L01_DATA_PIPE               2
 /* payload lenght */
 #define NRF24L01_PAYLOAD    			 32

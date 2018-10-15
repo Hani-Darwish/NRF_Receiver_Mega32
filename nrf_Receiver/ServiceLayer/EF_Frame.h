@@ -83,7 +83,8 @@ typedef enum
 	end_programing_cmnd,
 	start_block_cmnd,
 	programing_block_cmnd,
-	end_block_cmnd
+	end_block_cmnd,
+	programing_error_cmnd
 }enu_subcomand;
 
 

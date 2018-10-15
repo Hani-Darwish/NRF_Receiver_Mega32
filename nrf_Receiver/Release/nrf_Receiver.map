@@ -74,8 +74,6 @@ Discarded input sections
  .bss           0x00000000        0x0 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/crtm32.o
  .text          0x00000000        0x0 ./Utilities/EF_SpechialTIMER.o
  .bss           0x00000000        0x0 ./Utilities/EF_SpechialTIMER.o
- .text.EF_BOOLEAN_Timer_IsTimedOut
-                0x00000000       0x10 ./Utilities/EF_SpechialTIMER.o
  .text.EF_u8_TimerIsEnabled
                 0x00000000       0x10 ./Utilities/EF_SpechialTIMER.o
  .text.EF_void_TimerChangeTimeOut
@@ -116,15 +114,8 @@ Discarded input sections
  .bss           0x00000000        0x0 ./ServiceLayer/EF_Frame.o
  .text.EF_set_massageType
                 0x00000000       0x14 ./ServiceLayer/EF_Frame.o
- .text.EF_set_groupConfig
-                0x00000000       0x32 ./ServiceLayer/EF_Frame.o
- .text.EF_nrf_Build_Fram
-                0x00000000      0x100 ./ServiceLayer/EF_Frame.o
  .text.EF_get_MassageType
                 0x00000000       0x14 ./ServiceLayer/EF_Frame.o
- .rodata.CSWTCH.8
-                0x00000000        0x5 ./ServiceLayer/EF_Frame.o
- COMMON         0x00000000       0x43 ./ServiceLayer/EF_Frame.o
  .text          0x00000000        0x0 ./ServiceLayer/Program_Handl.o
  .bss           0x00000000        0x0 ./ServiceLayer/Program_Handl.o
  .text.Send_StartPrograming
@@ -135,12 +126,12 @@ Discarded input sections
                 0x00000000       0x50 ./ServiceLayer/Program_Handl.o
  .text.Send_DayPosition
                 0x00000000       0x64 ./ServiceLayer/Program_Handl.o
- .rodata.str1.1
-                0x00000000       0x2c ./ServiceLayer/Program_Handl.o
  .text.Send_ProgramingBlock
                 0x00000000       0xc8 ./ServiceLayer/Program_Handl.o
- .bss.progring_block
-                0x00000000      0x26c ./ServiceLayer/Program_Handl.o
+ .text.Receive_ErrorFrame
+                0x00000000       0xbe ./ServiceLayer/Program_Handl.o
+ .text.get_DaysPerMonth
+                0x00000000       0x14 ./ServiceLayer/Program_Handl.o
  .text          0x00000000        0x0 ./ServiceLayer/cwpack.o
  .bss           0x00000000        0x0 ./ServiceLayer/cwpack.o
  .rodata.str1.1
@@ -306,18 +297,13 @@ Discarded input sections
  .bss           0x00000000        0x0 ./HAL/nrf24l01.o
  .text.EF_nrf24l01_readregisters
                 0x00000000       0x48 ./HAL/nrf24l01.o
- .text.nrf24l01_setTXMode
-                0x00000000       0x3c ./HAL/nrf24l01.o
  .text.nrf24l01_printinfo
                 0x00000000      0x11a ./HAL/nrf24l01.o
- .text.EF_nrf24l01_writeData
-                0x00000000       0xfa ./HAL/nrf24l01.o
  .text          0x00000000        0x0 ./main.o
  .bss           0x00000000        0x0 ./main.o
  .data.addrtx5  0x00000000        0x5 ./main.o
  .data.addrtx4  0x00000000        0x5 ./main.o
  .data.addrtx3  0x00000000        0x5 ./main.o
- .data.addrtx2  0x00000000        0x5 ./main.o
  .data.addrtx1  0x00000000        0x5 ./main.o
  .data.addrtx0  0x00000000        0x5 ./main.o
  .text          0x00000000        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_divmodhi4.o)
@@ -700,7 +686,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xe7e
+.text           0x00000000     0x11b4
  *(.vectors)
  .vectors       0x00000000       0x54 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -782,142 +768,160 @@ END GROUP
  .text.EF_void_TimerInit
                 0x000000b4       0x20 ./Utilities/EF_SpechialTIMER.o
                 0x000000b4                EF_void_TimerInit
+ .text.EF_BOOLEAN_Timer_IsTimedOut
+                0x000000d4       0x10 ./Utilities/EF_SpechialTIMER.o
+                0x000000d4                EF_BOOLEAN_Timer_IsTimedOut
  .text.EF_void_TimerCreate
-                0x000000d4       0x3a ./Utilities/EF_SpechialTIMER.o
-                0x000000d4                EF_void_TimerCreate
+                0x000000e4       0x3a ./Utilities/EF_SpechialTIMER.o
+                0x000000e4                EF_void_TimerCreate
  .text.EF_void_TimersUpdate
-                0x0000010e       0x68 ./Utilities/EF_SpechialTIMER.o
-                0x0000010e                EF_void_TimersUpdate
+                0x0000011e       0x68 ./Utilities/EF_SpechialTIMER.o
+                0x0000011e                EF_void_TimersUpdate
  .text.EF_void_TimerISRCallback
-                0x00000176        0x4 ./Utilities/EF_SpechialTIMER.o
+                0x00000186        0x4 ./Utilities/EF_SpechialTIMER.o
  .text.EF_BOOLEAN_TimerCheck
-                0x0000017a       0x1c ./Utilities/EF_SpechialTIMER.o
-                0x0000017a                EF_BOOLEAN_TimerCheck
+                0x0000018a       0x1c ./Utilities/EF_SpechialTIMER.o
+                0x0000018a                EF_BOOLEAN_TimerCheck
  .text.EF_void_TimerStart
-                0x00000196       0x22 ./Utilities/EF_SpechialTIMER.o
-                0x00000196                EF_void_TimerStart
+                0x000001a6       0x22 ./Utilities/EF_SpechialTIMER.o
+                0x000001a6                EF_void_TimerStart
  .text.EF_void_TimerStop
-                0x000001b8       0x10 ./Utilities/EF_SpechialTIMER.o
-                0x000001b8                EF_void_TimerStop
+                0x000001c8       0x10 ./Utilities/EF_SpechialTIMER.o
+                0x000001c8                EF_void_TimerStop
  .text.EF_void_TimerReset
-                0x000001c8       0x16 ./Utilities/EF_SpechialTIMER.o
-                0x000001c8                EF_void_TimerReset
+                0x000001d8       0x16 ./Utilities/EF_SpechialTIMER.o
+                0x000001d8                EF_void_TimerReset
  .text.__vector_12
-                0x000001de       0x92 ./ServiceLayer/Buffer.o
-                0x000001de                __vector_12
+                0x000001ee       0x92 ./ServiceLayer/Buffer.o
+                0x000001ee                __vector_12
  .text.EF_CalculateCrc
-                0x00000270       0x68 ./ServiceLayer/EF_Frame.o
-                0x00000270                EF_CalculateCrc
+                0x00000280       0x68 ./ServiceLayer/EF_Frame.o
+                0x00000280                EF_CalculateCrc
+ .text.EF_set_groupConfig
+                0x000002e8       0x32 ./ServiceLayer/EF_Frame.o
+                0x000002e8                EF_set_groupConfig
+ .text.EF_nrf_Build_Fram
+                0x0000031a       0xec ./ServiceLayer/EF_Frame.o
+                0x0000031a                EF_nrf_Build_Fram
  .text.EF_get_SourceType
-                0x000002d8       0x26 ./ServiceLayer/EF_Frame.o
-                0x000002d8                EF_get_SourceType
+                0x00000406       0x26 ./ServiceLayer/EF_Frame.o
+                0x00000406                EF_get_SourceType
  .text.EF_parseFrame
-                0x000002fe      0x12a ./ServiceLayer/EF_Frame.o
-                0x000002fe                EF_parseFrame
- .text.get_DaysPerMonth
-                0x00000428       0x14 ./ServiceLayer/Program_Handl.o
-                0x00000428                get_DaysPerMonth
+                0x0000042c      0x12a ./ServiceLayer/EF_Frame.o
+                0x0000042c                EF_parseFrame
+ .text.Send_ErrorFrame
+                0x00000556       0x66 ./ServiceLayer/Program_Handl.o
+                0x00000556                Send_ErrorFrame
+ .text.Receive_Programing_Mode
+                0x000005bc      0x14a ./ServiceLayer/Program_Handl.o
+                0x000005bc                Receive_Programing_Mode
  .text.EF_SpiInit
-                0x0000043c       0x20 ./MCAL/EF_SPI.o
-                0x0000043c                EF_SpiInit
+                0x00000706       0x20 ./MCAL/EF_SPI.o
+                0x00000706                EF_SpiInit
  .text.EF_SpiTransfer
-                0x0000045c       0x4c ./MCAL/EF_SPI.o
-                0x0000045c                EF_SpiTransfer
+                0x00000726       0x4c ./MCAL/EF_SPI.o
+                0x00000726                EF_SpiTransfer
  .text.EF_void_Timer_PORTinit
-                0x000004a8       0x1a ./MCAL/EF_Timer.o
-                0x000004a8                EF_void_Timer_PORTinit
+                0x00000772       0x1a ./MCAL/EF_Timer.o
+                0x00000772                EF_void_Timer_PORTinit
  .text.EF_void_Timer_SetISRCallBack
-                0x000004c2        0xa ./MCAL/EF_Timer.o
-                0x000004c2                EF_void_Timer_SetISRCallBack
+                0x0000078c        0xa ./MCAL/EF_Timer.o
+                0x0000078c                EF_void_Timer_SetISRCallBack
  .text.__vector_5
-                0x000004cc       0x5c ./MCAL/EF_Timer.o
-                0x000004cc                __vector_5
+                0x00000796       0x5c ./MCAL/EF_Timer.o
+                0x00000796                __vector_5
  .text.EF_void_UART_Init
-                0x00000528       0xce ./MCAL/EF_UART.o
-                0x00000528                EF_void_UART_Init
+                0x000007f2       0xce ./MCAL/EF_UART.o
+                0x000007f2                EF_void_UART_Init
  .text.EF_void_UART_PutChar
-                0x000005f6        0x8 ./MCAL/EF_UART.o
-                0x000005f6                EF_void_UART_PutChar
+                0x000008c0        0x8 ./MCAL/EF_UART.o
+                0x000008c0                EF_void_UART_PutChar
  .text.EF_void_UART_Send_Integer
-                0x000005fe       0x5c ./MCAL/EF_UART.o
-                0x000005fe                EF_void_UART_Send_Integer
+                0x000008c8       0x5c ./MCAL/EF_UART.o
+                0x000008c8                EF_void_UART_Send_Integer
  .text.EF_void_UART_SendString
-                0x0000065a       0x32 ./MCAL/EF_UART.o
-                0x0000065a                EF_void_UART_SendString
+                0x00000924       0x32 ./MCAL/EF_UART.o
+                0x00000924                EF_void_UART_SendString
  .text.__vector_13
-                0x0000068c       0x94 ./MCAL/EF_UART.o
-                0x0000068c                __vector_13
+                0x00000956       0x94 ./MCAL/EF_UART.o
+                0x00000956                __vector_13
  .text.EF_nrf24l01_readregister
-                0x00000720       0x30 ./HAL/nrf24l01.o
-                0x00000720                EF_nrf24l01_readregister
+                0x000009ea       0x30 ./HAL/nrf24l01.o
+                0x000009ea                EF_nrf24l01_readregister
  .text.EF_nrf24l01_writeregister
-                0x00000750       0x22 ./HAL/nrf24l01.o
-                0x00000750                EF_nrf24l01_writeregister
+                0x00000a1a       0x22 ./HAL/nrf24l01.o
+                0x00000a1a                EF_nrf24l01_writeregister
  .text.EF_nrf24l01_writeregisters
-                0x00000772       0x4a ./HAL/nrf24l01.o
-                0x00000772                EF_nrf24l01_writeregisters
+                0x00000a3c       0x4a ./HAL/nrf24l01.o
+                0x00000a3c                EF_nrf24l01_writeregisters
  .text.nrf24l01_revaddress
-                0x000007bc       0x22 ./HAL/nrf24l01.o
-                0x000007bc                nrf24l01_revaddress
+                0x00000a86       0x22 ./HAL/nrf24l01.o
+                0x00000a86                nrf24l01_revaddress
  .text.nrf24l01_setrxaddr
-                0x000007de       0xea ./HAL/nrf24l01.o
-                0x000007de                nrf24l01_setrxaddr
+                0x00000aa8       0xea ./HAL/nrf24l01.o
+                0x00000aa8                nrf24l01_setrxaddr
  .text.nrf24l01_settxaddr
-                0x000008c8       0x54 ./HAL/nrf24l01.o
-                0x000008c8                nrf24l01_settxaddr
+                0x00000b92       0x54 ./HAL/nrf24l01.o
+                0x00000b92                nrf24l01_settxaddr
  .text.nrf24l01_flushRXfifo
-                0x0000091c       0x1a ./HAL/nrf24l01.o
-                0x0000091c                nrf24l01_flushRXfifo
+                0x00000be6       0x1a ./HAL/nrf24l01.o
+                0x00000be6                nrf24l01_flushRXfifo
  .text.nrf24l01_flushTXfifo
-                0x00000936       0x1a ./HAL/nrf24l01.o
-                0x00000936                nrf24l01_flushTXfifo
+                0x00000c00       0x1a ./HAL/nrf24l01.o
+                0x00000c00                nrf24l01_flushTXfifo
  .text.nrf24l01_setRXMode
-                0x00000950       0x4a ./HAL/nrf24l01.o
-                0x00000950                nrf24l01_setRXMode
+                0x00000c1a       0x4a ./HAL/nrf24l01.o
+                0x00000c1a                nrf24l01_setRXMode
+ .text.nrf24l01_setTXMode
+                0x00000c64       0x3c ./HAL/nrf24l01.o
+                0x00000c64                nrf24l01_setTXMode
  .text.EF_nrf24l01_getstatus
-                0x0000099a       0x26 ./HAL/nrf24l01.o
-                0x0000099a                EF_nrf24l01_getstatus
+                0x00000ca0       0x26 ./HAL/nrf24l01.o
+                0x00000ca0                EF_nrf24l01_getstatus
  .text.EF_nrf24l01_readready
-                0x000009c0       0x22 ./HAL/nrf24l01.o
-                0x000009c0                EF_nrf24l01_readready
+                0x00000cc6       0x22 ./HAL/nrf24l01.o
+                0x00000cc6                EF_nrf24l01_readready
  .text.EF_nrf24l01_readData
-                0x000009e2       0x5c ./HAL/nrf24l01.o
-                0x000009e2                EF_nrf24l01_readData
+                0x00000ce8       0x5c ./HAL/nrf24l01.o
+                0x00000ce8                EF_nrf24l01_readData
+ .text.EF_nrf24l01_writeData
+                0x00000d44       0xfc ./HAL/nrf24l01.o
+                0x00000d44                EF_nrf24l01_writeData
  .text.nrf24l01_setPwrlevel
-                0x00000a3e       0x1a ./HAL/nrf24l01.o
-                0x00000a3e                nrf24l01_setPwrlevel
+                0x00000e40       0x1a ./HAL/nrf24l01.o
+                0x00000e40                nrf24l01_setPwrlevel
  .text.nrf24l01_setDataRate
-                0x00000a58       0x1a ./HAL/nrf24l01.o
-                0x00000a58                nrf24l01_setDataRate
+                0x00000e5a       0x1a ./HAL/nrf24l01.o
+                0x00000e5a                nrf24l01_setDataRate
  .text.nrf24l01_setcrcLength
-                0x00000a72       0x1a ./HAL/nrf24l01.o
-                0x00000a72                nrf24l01_setcrcLength
+                0x00000e74       0x1a ./HAL/nrf24l01.o
+                0x00000e74                nrf24l01_setcrcLength
  .text.EF_nrf24l01_init
-                0x00000a8c      0x184 ./HAL/nrf24l01.o
-                0x00000a8c                EF_nrf24l01_init
+                0x00000e8e      0x184 ./HAL/nrf24l01.o
+                0x00000e8e                EF_nrf24l01_init
  .text.startup.main
-                0x00000c10      0x182 ./main.o
-                0x00000c10                main
+                0x00001012       0xb6 ./main.o
+                0x00001012                main
  .text.libgcc.div
-                0x00000d92       0x44 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_udivmodsi4.o)
-                0x00000d92                __udivmodsi4
+                0x000010c8       0x44 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_udivmodsi4.o)
+                0x000010c8                __udivmodsi4
  .text.libgcc.div
-                0x00000dd6       0x28 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_udivmodhi4.o)
-                0x00000dd6                __udivmodhi4
+                0x0000110c       0x28 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_udivmodhi4.o)
+                0x0000110c                __udivmodhi4
  .text.avr-libc
-                0x00000dfe       0x1a /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/libc.a(memcmp.o)
-                0x00000dfe                memcmp
+                0x00001134       0x1a /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/libc.a(memcmp.o)
+                0x00001134                memcmp
  .text.avr-libc
-                0x00000e18       0x42 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/libc.a(itoa.o)
-                0x00000e18                itoa
+                0x0000114e       0x42 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/libc.a(itoa.o)
+                0x0000114e                itoa
  .text.avr-libc
-                0x00000e5a       0x20 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/libc.a(strrev.o)
-                0x00000e5a                strrev
-                0x00000e7a                . = ALIGN (0x2)
+                0x00001190       0x20 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/libc.a(strrev.o)
+                0x00001190                strrev
+                0x000011b0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000e7a        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
-                0x00000e7a                exit
-                0x00000e7a                _exit
+ .fini9         0x000011b0        0x0 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+                0x000011b0                exit
+                0x000011b0                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -936,11 +940,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000e7a        0x4 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
+ .fini0         0x000011b0        0x4 /usr/lib/gcc/avr/4.8.2/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000e7e                _etext = .
+                0x000011b4                _etext = .
 
-.data           0x00800060      0x240 load address 0x00000e7e
+.data           0x00800060      0x2aa load address 0x000011b4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 /usr/lib/gcc/avr/4.8.2/../../../avr/lib/avr5/crtm32.o
@@ -1002,61 +1006,76 @@ END GROUP
                 0x00800079        0x5 ./HAL/nrf24l01.o
  .data.nrf24l01_addr0
                 0x0080007e        0x5 ./HAL/nrf24l01.o
+ .data.g_rfChanl
+                0x00800083        0x1 ./HAL/nrf24l01.o
+                0x00800083                g_rfChanl
+ .data.addrtx2  0x00800084        0x5 ./main.o
+                0x00800084                addrtx2
  .data.uart_cfg
-                0x00800083        0xb ./main.o
-                0x00800083                uart_cfg
+                0x00800089        0xb ./main.o
+                0x00800089                uart_cfg
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080008e       0x1d ./ServiceLayer/EF_Frame.o
+                0x00800094       0x12 ./ServiceLayer/EF_Frame.o
  .rodata.CSWTCH.12
+                0x008000a6        0x5 ./ServiceLayer/EF_Frame.o
+ .rodata.CSWTCH.8
                 0x008000ab        0x5 ./ServiceLayer/EF_Frame.o
- .rodata.u8MonthDays
-                0x008000b0        0xd ./ServiceLayer/Program_Handl.o
  .rodata.str1.1
-                0x008000bd       0xec ./HAL/nrf24l01.o
+                0x008000b0      0x139 ./ServiceLayer/Program_Handl.o
+                                0x13e (size before relaxing)
+ .rodata.u8MonthDays
+                0x008001e9        0xd ./ServiceLayer/Program_Handl.o
+ .rodata.str1.1
+                0x008001f6       0xec ./HAL/nrf24l01.o
                                  0xef (size before relaxing)
  .rodata.str1.1
-                0x008001a9       0xf7 ./main.o
-                                 0xf9 (size before relaxing)
+                0x008002e2       0x28 ./main.o
  *(.gnu.linkonce.d*)
-                0x008002a0                . = ALIGN (0x2)
-                0x008002a0                _edata = .
-                0x008002a0                PROVIDE (__data_end, .)
+                0x0080030a                . = ALIGN (0x2)
+                0x0080030a                _edata = .
+                0x0080030a                PROVIDE (__data_end, .)
 
-.bss            0x008002a0      0x17a
-                0x008002a0                PROVIDE (__bss_start, .)
+.bss            0x0080030a      0x1be
+                0x0080030a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.timers_list
-                0x008002a0       0x64 ./Utilities/EF_SpechialTIMER.o
+                0x0080030a       0x64 ./Utilities/EF_SpechialTIMER.o
+ .bss.DayPrMonth.1911
+                0x0080036e        0x1 ./ServiceLayer/Program_Handl.o
+ .bss.months_error_index.1912
+                0x0080036f        0x1 ./ServiceLayer/Program_Handl.o
  .bss.voidFuncPtr
-                0x00800304        0x2 ./MCAL/EF_Timer.o
+                0x00800370        0x2 ./MCAL/EF_Timer.o
  .bss.UART_RxTail
-                0x00800306        0x2 ./MCAL/EF_UART.o
+                0x00800372        0x2 ./MCAL/EF_UART.o
  .bss.UART_RxHead
-                0x00800308        0x2 ./MCAL/EF_UART.o
+                0x00800374        0x2 ./MCAL/EF_UART.o
  .bss.UART_LastRxError
-                0x0080030a        0x1 ./MCAL/EF_UART.o
+                0x00800376        0x1 ./MCAL/EF_UART.o
  .bss.UART_RxBuf
-                0x0080030b      0x100 ./MCAL/EF_UART.o
- .bss.months_error_index.2432
-                0x0080040b        0x1 ./main.o
+                0x00800377      0x100 ./MCAL/EF_UART.o
  *(COMMON)
- COMMON         0x0080040c        0xe ./ServiceLayer/Buffer.o
-                0x0080040c                isArduinoRXBufferEmpty
-                0x0080040d                isArduinoRXBufferOverFlowed
-                0x0080040e                CircularBuffer
-                0x0080041a                PROVIDE (__bss_end, .)
-                0x00000e7e                __data_load_start = LOADADDR (.data)
-                0x000010be                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800477        0xe ./ServiceLayer/Buffer.o
+                0x00800477                isArduinoRXBufferEmpty
+                0x00800478                isArduinoRXBufferOverFlowed
+                0x00800479                CircularBuffer
+ COMMON         0x00800485       0x43 ./ServiceLayer/EF_Frame.o
+                0x00800485                g_Packet_ID
+                0x00800487                gstr_received_data
+                0x008004a8                g_FramBuild
+                0x008004c8                PROVIDE (__bss_end, .)
+                0x000011b4                __data_load_start = LOADADDR (.data)
+                0x0000145e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080041a        0x0
-                0x0080041a                PROVIDE (__noinit_start, .)
+.noinit         0x008004c8        0x0
+                0x008004c8                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080041a                PROVIDE (__noinit_end, .)
-                0x0080041a                _end = .
-                0x0080041a                PROVIDE (__heap_start, .)
+                0x008004c8                PROVIDE (__noinit_end, .)
+                0x008004c8                _end = .
+                0x008004c8                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

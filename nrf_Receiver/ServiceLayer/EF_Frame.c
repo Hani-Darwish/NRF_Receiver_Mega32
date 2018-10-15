@@ -18,6 +18,8 @@ void EF_nrf_Build_Fram(gstr_buildFram* buildFram_str)
 	U8_t  crc_data_length = CRC_DATA_LENGTH;
 	U8_t  iterator = 0;
 
+	memset(g_FramBuild,0,MAX_FRAM_SIZE);
+
 	/* increment packet id */
 	++g_Packet_ID;
 	/* add start byte  */
@@ -60,9 +62,9 @@ void EF_nrf_Build_Fram(gstr_buildFram* buildFram_str)
 	//	EF_void_UART_SendArray(crc_cheksum,2);
 	//	EF_void_UART_SendString("  \n  ");
 
-	EF_void_UART_SendString("frame ");
-	EF_void_UART_SendArray(g_FramBuild,32);
-	EF_void_UART_SendString(" \n ");
+//	EF_void_UART_SendString("frame ");
+//	EF_void_UART_SendArray(g_FramBuild,32);
+//	EF_void_UART_SendString(" \n ");
 }
 
 

@@ -22,6 +22,8 @@ Please refer to LICENSE file for licensing information.
 #define DEBUG_RF
 
 
+U8_t g_rfChanl = NRF24L01_CH;
+
 /* address variables */
 static uint8_t nrf24l01_addr0[NRF24L01_ADDRSIZE]  = NRF24L01_ADDRP0;
 static uint8_t nrf24l01_addr1[NRF24L01_ADDRSIZE]  = NRF24L01_ADDRP1;
@@ -456,7 +458,7 @@ wrt_nrf_DataStatus EF_nrf24l01_writeData(uint8_t *data, uint8_t data_length)
 	EF_void_TimerStop(NRF_SEND_ID);
 	EF_void_TimerReset(NRF_SEND_ID);
 	/* reset PLOS_CNT */
-	EF_nrf24l01_writeregister(RF_CH, NRF24L01_CH);
+	EF_nrf24l01_writeregister(RF_CH, g_rfChanl);
 	/* power down */
 //	EF_nrf24l01_writeregister(CONFIG, EF_nrf24l01_readregister(CONFIG) & ~(1<<PWR_UP));
 	/* set rx mode */
